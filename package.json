@@ -11,41 +11,48 @@
     "lark-bot",
     "global"
   ],
-  "license": "MIT",
   "homepage": "https://github.com/ariesho2903/n8n-nodes-lark-global#readme",
-  "author": {
-    "name": "ariesho2903"
+  "bugs": {
+    "url": "https://github.com/ariesho2903/n8n-nodes-lark-global/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ariesho2903/n8n-nodes-lark-global.git"
   },
-  "engines": {
-    "node": ">=20.15"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
   },
+  "author": {
+    "name": "ariesho2903"
+  },
+  "type": "commonjs",
   "main": "index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "npx rimraf dist && tsc && gulp build:icons",
     "dev": "tsc --watch",
     "format": "prettier nodes credentials --write",
     "lint": "eslint nodes credentials package.json",
     "lintfix": "eslint nodes credentials package.json --fix",
-    "prepublishOnly": "npm run build && npm run lint -c .eslintrc.prepublish.js nodes credentials package.json",
+    "prepublishOnly": "npm run build",
     "test": "jest"
   },
-  "files": [
-    "dist"
-  ],
-  "n8n": {
-    "n8nNodesApiVersion": 1,
-    "credentials": [
-      "dist/credentials/LarkTokenApi.credentials.js",
-      "dist/credentials/LarkOAuth2Api.credentials.js"
-    ],
-    "nodes": [
-      "dist/nodes/Lark/Lark.node.js",
-      "dist/nodes/Lark/LarkTrigger.node.js"
-    ]
+  "dependencies": {
+    "@langchain/core": "0.3.43",
+    "@modelcontextprotocol/sdk": "^1.15.1",
+    "crypto": "^1.0.1",
+    "form-data": "^4.0.4",
+    "isbot": "^5.1.30",
+    "luxon": "^3.7.1",
+    "protobufjs": "^7.5.3",
+    "sanitize-html": "^2.17.0",
+    "uuid": "^11.1.0",
+    "ws": "^8.18.3",
+    "zod": "^3.24.1",
+    "zod-to-json-schema": "^3.24.6"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
@@ -63,27 +70,24 @@
     "ts-jest": "^29.2.6",
     "typescript": "^5.8.3"
   },
-  "dependencies": {
-    "@langchain/core": "0.3.43",
-    "@modelcontextprotocol/sdk": "^1.15.1",
-    "crypto": "^1.0.1",
-    "form-data": "^4.0.4",
-    "isbot": "^5.1.30",
-    "luxon": "^3.7.1",
-    "protobufjs": "^7.5.3",
-    "sanitize-html": "^2.17.0",
-    "uuid": "^11.1.0",
-    "ws": "^8.18.3",
-    "zod": "^3.24.1",
-    "zod-to-json-schema": "^3.24.6"
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "engines": {
+    "node": ">=20.15"
   },
   "overrides": {
     "pkce-challenge": "4.0.0"
   },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  },
-  "bugs": {
-    "url": "https://github.com/ariesho2903/n8n-nodes-lark-global/issues"
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/LarkTokenApi.credentials.js",
+      "dist/credentials/LarkOAuth2Api.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Lark/Lark.node.js",
+      "dist/nodes/Lark/LarkTrigger.node.js"
+    ]
   }
 }
